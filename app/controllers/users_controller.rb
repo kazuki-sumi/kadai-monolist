@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_user_logged_in, only: [:show]
+  
   def show
     # /users/2といったURLにアクセスされると、params[:id] = 2が代入される
     @user = User.find(params[:id])

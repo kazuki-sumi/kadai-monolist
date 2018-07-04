@@ -2,6 +2,12 @@ Rails.application.routes.draw do
     #トップページのurl作成
     root to: 'toppages#index'
     
+    # 新規作成用のフォームページのURL
+    get 'login' => 'sessions#new'
+    # 保存アクションのURL
+    post'login' => 'sessions#create'
+    delete 'logout' => 'sessions#destroy'
+     
     # ユーザ登録用
     get 'signup' => 'users#new'
     
