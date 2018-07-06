@@ -15,4 +15,7 @@ Rails.application.routes.draw do
     # get 'users/new' => 'users#new'
     # post 'users' => 'users#create'
     resources :users, only:[:show, :new, :create]
+    
+    # get 'items/new' => 'items#new' 
+    resources :items, only:[:new]
 end
