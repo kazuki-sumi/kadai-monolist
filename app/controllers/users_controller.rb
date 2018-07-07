@@ -4,6 +4,10 @@ class UsersController < ApplicationController
   def show
     # /users/2といったURLにアクセスされると、params[:id] = 2が代入される
     @user = User.find(params[:id])
+    # .uniq 配列の中で重複する要素を削除した新しい配列を返す
+    # want, Havaの両方を取得するため@user.items.uniq
+    @item = @user.items.uniq
+    @count_want = @user.want_items.count
   end
 
   def new

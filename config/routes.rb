@@ -10,12 +10,14 @@ Rails.application.routes.draw do
      
     # ユーザ登録用
     get 'signup' => 'users#new'
-    
     # get 'users/:id' => 'users#show'
     # get 'users/new' => 'users#new'
     # post 'users' => 'users#create'
     resources :users, only:[:show, :new, :create]
     
     # get 'items/new' => 'items#new' 
-    resources :items, only:[:new]
+    resources :items, only:[:new, :show]
+    
+    # post 'ownerships' => 'ownerships#create'
+    resources :ownerships, only: [:create, :destroy]
 end

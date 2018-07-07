@@ -10,8 +10,8 @@ class ItemsController < ApplicationController
     # text_field_tag :keywordから受け取る
     @keyword = params[:keyword]
     # 検索結果をresultに代入
-    if @keyword.paresent?
-      results = RakutenWebService::Ichiba::Item.serch({
+    if @keyword.present?
+      results = RakutenWebService::Ichiba::Item.search({
         keyword: @keyword,
         imageFlag: 1,
         hits: 20,
@@ -19,9 +19,9 @@ class ItemsController < ApplicationController
       
       #
       results.each do |result|
-        # 扱い易いようにItemとしてインスタンスを作成
-        # 保存はしない
-        item = Item.new(read(result))
+        # 既に保存されている Item に関しては、 item.id の値も含めたいからです。
+        # この item.id はフォームから Unwant するときに使用します。
+        item = Item.find_or_initialize_by(read(result))
         # <<で@itemsの配列[]にitemを追加
         
         @items << item
@@ -29,24 +29,8 @@ class ItemsController < ApplicationController
     end
   end
   
-  private
-  
-  def read(result)
-    # itemCode 楽天でのID
-    code = result['itemCode']
-    # itemName 商品名
-    name = result['itemName']
-    # itemUrl 商品の楽天でのURL
-    url = result['itemUrl']
-    # mediumImageUrls 商品の画像URL
-    image_url = result['mediumImageUrls'].first['imageUrl'].gsub('?_ex=128x128', '' )
-    
-    # ハッシュとしてreturn
-    return {
-      code: code,
-      name: name,
-      url: url,
-      image_url: image_url,
-    }
+  def show
+    @item = Item.find(params[:id])
+    @want_users = @item.want_users
   end
 end

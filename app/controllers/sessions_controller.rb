@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     if login(email, password)
       # redirect_toの前ならflash
       flash[:success] = 'ログインに成功しました。'
-      redirect_to @user_params
+      redirect_to @user
     else
       # renderの前ならflash.now
       flash.now[:danger] = 'ログインに失敗しました。'
