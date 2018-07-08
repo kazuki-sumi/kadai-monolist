@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
       end
   end
   
+  # 検索結果から、必要な値を読みだして、最後にハッシュとしてreturnする。
   def read(result)
     # itemCode 楽天でのID
     code = result['itemCode']

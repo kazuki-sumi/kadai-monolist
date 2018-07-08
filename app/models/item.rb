@@ -12,4 +12,8 @@ class Item < ApplicationRecord
     has_many :wants
     # item.want_usersで、itemをWantしているusersを取得できる
     has_many :want_users, through: :wants, class_name: 'User', source: :user
+    
+    has_many :haves, class_name: 'Have'
+    # item.have_usersで、itemをHaveしているusersを取得できる
+    has_many :have_users, through: :haves, class_name: 'User', source: :user
 end

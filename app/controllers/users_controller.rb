@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     # want, Havaの両方を取得するため@user.items.uniq
     @item = @user.items.uniq
     @count_want = @user.want_items.count
+    @count_have = @user.have_items.count
   end
 
   def new

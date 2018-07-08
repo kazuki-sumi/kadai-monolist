@@ -1,5 +1,4 @@
-<!-- item Modelのインスタンス利用 -->
-<% if items.present %>
+<% if items.present? %>
     <div class="row">
         <% items.each do |item| %>
         <div class="item">
@@ -9,7 +8,7 @@
                         <img src="<%= item.image_url %>" alt="">
                     </div>
                     <div class="panel-body">
-                        <% if item.persisted %> 
+                        <% if item.persisted? %> 
                             <p class="item-title">
                                 <%= link_to item.name, item %>
                             </p>
@@ -21,6 +20,7 @@
                         <div class="buttons text-center">
                             <% if logged_in? %>
                                 <%= render 'ownerships/want_button', item: item %>
+                                <%= render 'ownerships/have_button', item: item %>
                             <% end %>
                             
                         </div>
