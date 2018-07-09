@@ -2,6 +2,8 @@ Rails.application.routes.draw do
     #トップページのurl作成
     root to: 'toppages#index'
     
+    get 'rankings/want' => 'rankings#want'
+    
     # 新規作成用のフォームページのURL
     get 'login' => 'sessions#new'
     # 保存アクションのURL
