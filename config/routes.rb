@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     root to: 'toppages#index'
     
     get 'rankings/want' => 'rankings#want'
+    get 'rankings/have' => 'rankings#have'
     
     # 新規作成用のフォームページのURL
     get 'login' => 'sessions#new'
